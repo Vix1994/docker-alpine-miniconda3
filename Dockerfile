@@ -10,6 +10,10 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Install conda
 RUN echo "**** install dev packages ****" && \
     apk add --no-cache --virtual .build-dependencies bash ca-certificates wget && \
+    apk add --virtual build-dependencies build-base && \
+    apk add gcc && \
+    apk add wget && \
+    apk add git && \
     \
     echo "**** get Miniconda ****" && \
     mkdir -p "$CONDA_DIR" && \
@@ -32,4 +36,4 @@ RUN echo "**** install dev packages ****" && \
     \
     echo "**** finalize ****" && \
     mkdir -p "$CONDA_DIR/locks" && \
-    chmod 777 "$CONDA_DIR/locks"
+    chmod 777 "$CONDA_DIR/locks" &&
